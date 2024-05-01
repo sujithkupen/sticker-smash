@@ -9,7 +9,7 @@ import IconButton from "./components/IconButton";
 import CircleButton from "./components/CircleButton";
 import EmojiPicker from "./components/EmojiPicker";
 import EmojiList from "./components/EmojiList";
-
+import EmojiSticker from "./components/EmojiSticker";
 export default function App() {
   const [image, setImage] = useState(null);
   const [showAppOptions, setShowAppOptions] = useState(false);
@@ -45,6 +45,9 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <ImageViewer placeholderImageSource={PlaceholderImage} image={image} />
+        {pickedEmoji && (
+          <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />
+        )}
       </View>
       {showAppOptions ? (
         <View style={styles.optionsContainer}>
@@ -68,7 +71,7 @@ export default function App() {
         </View>
       )}
       <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
-        <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose}/>
+        <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
       </EmojiPicker>
       <StatusBar style="auto" />
     </View>
